@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/app_bg"
+    android:orientation="vertical">
+
+    <!-- Premium Header -->
+    <LinearLayout
+        android:id="@+id/llHeader"
+        style="@style/Widget.App.Header">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="@dimen/action_button_size"
+            android:layout_height="@dimen/action_button_size"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/btn_back"
+            android:src="@drawable/ic_back" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_small"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/Widget.App.HeaderText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/equip_list_title" />
+
+            <TextView
+                style="@style/Widget.App.HeaderSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/desc_equipment" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/lvEquipment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="0dp"
+            android:paddingHorizontal="@dimen/spacing_small"
+            android:paddingTop="@dimen/spacing_small"
+            android:paddingBottom="88dp" />
+
+        <!-- Enhanced Add Button -->
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/fabAddEquipment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/fab_margin"
+            android:text="@string/btn_new_device"
+            android:textColor="@color/white"
+            app:backgroundTint="@color/brand_primary"
+            app:icon="@android:drawable/ic_input_add"
+            app:iconTint="@color/white" />
+    </FrameLayout>
+</LinearLayout>

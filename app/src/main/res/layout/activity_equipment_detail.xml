@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_bg"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <!-- Header -->
+    <LinearLayout
+        style="@style/Widget.App.Header">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="@dimen/action_button_size"
+            android:layout_height="@dimen/action_button_size"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/btn_back"
+            android:src="@drawable/ic_back" />
+
+        <TextView
+            style="@style/Widget.App.HeaderText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_small"
+            android:text="@string/detail_title" />
+    </LinearLayout>
+
+    <com.google.android.material.card.MaterialCardView
+        style="@style/Widget.App.Card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/spacing_medium">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/card_padding">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hint_equip_id"
+                android:textColor="@color/text_muted"
+                android:textSize="@dimen/text_size_tiny"
+                android:textStyle="bold"
+                android:letterSpacing="0.1" />
+            <TextView
+                android:id="@+id/tvDetailId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_large"
+                android:text="@string/hint_equip_id"
+                android:textColor="@color/text_dark"
+                android:textSize="@dimen/text_size_title"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hint_equip_name"
+                android:textColor="@color/text_muted"
+                android:textSize="@dimen/text_size_tiny"
+                android:textStyle="bold"
+                android:letterSpacing="0.1" />
+            <TextView
+                android:id="@+id/tvDetailName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_large"
+                android:text="@string/hint_equip_name"
+                android:textColor="@color/brand_primary_light"
+                android:textSize="@dimen/text_size_h3"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:baselineAligned="false">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/hint_equip_brand"
+                        android:textColor="@color/text_muted"
+                        android:textSize="@dimen/text_size_tiny"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.1" />
+                    <TextView
+                        android:id="@+id/tvDetailBrand"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/spacing_large"
+                        android:text="@string/hint_equip_brand"
+                        android:textColor="@color/text_dark"
+                        android:textSize="@dimen/text_size_body" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/hint_equip_year"
+                        android:textColor="@color/text_muted"
+                        android:textSize="@dimen/text_size_tiny"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.1" />
+                    <TextView
+                        android:id="@+id/tvDetailYear"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/spacing_large"
+                        android:text="@string/placeholder_year"
+                        android:textColor="@color/text_dark"
+                        android:textSize="@dimen/text_size_body" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_status"
+                android:textColor="@color/text_muted"
+                android:textSize="@dimen/text_size_tiny"
+                android:textStyle="bold"
+                android:letterSpacing="0.1" />
+            <TextView
+                android:id="@+id/tvDetailStatus"
+                style="@style/Widget.App.Badge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_tiny"
+                android:layout_marginBottom="@dimen/spacing_large"
+                android:background="@color/status_active_bg"
+                android:text="@string/status_active"
+                android:textColor="@color/status_active" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_category"
+                android:textColor="@color/text_muted"
+                android:textSize="@dimen/text_size_tiny"
+                android:textStyle="bold"
+                android:letterSpacing="0.1" />
+            <TextView
+                android:id="@+id/tvDetailCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_category"
+                android:textColor="@color/text_dark"
+                android:textSize="@dimen/text_size_body" />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnEditDetail"
+        style="@style/Widget.App.Button.Primary"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="@dimen/spacing_medium"
+        android:layout_marginTop="@dimen/spacing_small"
+        android:text="@string/btn_edit_device"
+        android:textStyle="bold"
+        app:elevation="@dimen/elevation_medium" />
+
+</LinearLayout>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Brand Colors -->
+    <color name="brand_primary">#1A237E</color>
+    <color name="brand_primary_light">#3F51B5</color>
+    <color name="brand_secondary">#5C6BC0</color>
+
+    <!-- Neutral Colors -->
+    <color name="app_bg">#F8F9FD</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="text_primary">#1A237E</color>
+    <color name="text_secondary">#757575</color>
+    <color name="text_hint">#BDBDBD</color>
+    <color name="text_light">#C5CAE9</color>
+    <color name="text_muted">#9E9E9E</color>
+    <color name="text_dark">#212121</color>
+    <color name="divider">#EEEEEE</color>
+
+    <!-- Semantic Colors -->
+    <color name="status_active">#2E7D32</color>
+    <color name="status_active_bg">#E8F5E9</color>
+    <color name="status_maintenance">#F9A825</color>
+    <color name="status_broken">#C62828</color>
+    <color name="error">#F44336</color>
+    <color name="success">#4CAF50</color>
+    <color name="info">#0288D1</color>
+    <color name="report_green">#689F38</color>
+
+    <!-- Background and UI elements -->
+    <color name="bg_field">#F5F5F5</color>
+    <color name="bg_decorative">#F0F4FF</color>
+    <color name="card_blue_light">#E1F5FE</color>
+    <color name="card_indigo_light">#E8EAF6</color>
+    <color name="card_green_light">#F1F8E9</color>
+    <color name="ripple_light">#10000000</color>
+</resources>

@@ -1,0 +1,53 @@
+# Gradle
+.gradle/
+build/
+*/build/
+
+# Android Studio / IntelliJ
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Local configuration
+local.properties
+
+# Android generated files
+captures/
+.externalNativeBuild/
+.cxx/
+
+# APK / AAB outputs
+*.apk
+*.aab
+*.ap_
+output-metadata.json
+
+# Keystore / signing files
+*.jks
+*.keystore
+
+# Logs
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Kotlin/Java build outputs
+*.class
+
+# Google services / secrets
+google-services.json
+
+# Navigation editor temp files
+.navigation/
+
+# Android lint
+lint-results*.html
+lint-results*.xml
+lint-results*.txt
+
+# Test / coverage outputs
+coverage/
+jacoco/

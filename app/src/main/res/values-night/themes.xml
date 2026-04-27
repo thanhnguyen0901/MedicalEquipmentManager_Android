@@ -1,0 +1,9 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.K23DTCN436_NguyenVietThanh" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">#1A237E</item>
+        <item name="android:statusBarColor">#1A237E</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
+        <item name="android:windowTranslucentStatus">false</item>
+    </style>
+</resources>
