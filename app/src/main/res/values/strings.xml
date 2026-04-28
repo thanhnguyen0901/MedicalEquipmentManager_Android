@@ -25,7 +25,6 @@
     <string name="hint_equip_name">Tên Thiết bị</string>
     <string name="hint_equip_brand">Hãng sản xuất</string>
     <string name="hint_equip_year">Năm sản xuất</string>
-    <string name="hint_equip_year_full">Năm sản xuất (VD: 2022)</string>
     <string name="label_category">Loại thiết bị</string>
     <string name="label_status">Tình trạng</string>
 
@@ -38,12 +37,10 @@
     <string name="cat_list_title">Quản lý loại thiết bị</string>
     <string name="btn_add_category">Thêm loại thiết bị</string>
     <string name="label_category_name">Nhập tên loại thiết bị</string>
-    <string name="hint_category_name">Ví dụ: Máy siêu âm, Máy X-quang</string>
     <string name="hint_category_id">Mã loại</string>
     <string name="label_category_id">Mã loại: %s</string>
     <string name="btn_edit_cat">Sửa loại thiết bị</string>
     <string name="btn_update">Cập nhật</string>
-    <string name="label_existing_categories">Danh sách loại thiết bị</string>
 
     <!-- Buttons -->
     <string name="btn_save_device">Lưu thông tin</string>
@@ -52,13 +49,10 @@
     <string name="btn_apply_filter">Áp dụng lọc</string>
 
     <!-- Dialogs & Toasts -->
-    <string name="dialog_confirm">Xác nhận</string>
     <string name="dialog_cancel">Hủy bỏ</string>
     <string name="dialog_delete">Xóa</string>
-    <string name="dialog_confirm_delete">Xác nhận xóa</string>
     <string name="dialog_delete_cat_title">Xóa loại thiết bị</string>
     <string name="dialog_options_format">Tùy chọn cho: %s</string>
-    <string name="dialog_manage_format">Quản lý: %s</string>
     <string name="msg_delete_success">Đã xóa thành công</string>
     <string name="msg_save_success">Đã lưu thông tin</string>
     <string name="msg_update_success">Đã cập nhật thành công</string>
@@ -67,7 +61,6 @@
 
     <!-- Errors & Validation -->
     <string name="err_empty_fields">Vui lòng không để trống thông tin</string>
-    <string name="err_invalid_year">Năm sản xuất không hợp lệ</string>
     <string name="err_invalid_year_format">Năm sản xuất không hợp lệ (1900 - %d)</string>
     <string name="err_no_category">Cần có ít nhất 1 loại thiết bị để tiếp tục</string>
     <string name="err_no_category_available">Chưa có loại thiết bị nào</string>
@@ -76,7 +69,6 @@
     <string name="err_db_save">Lỗi hệ thống: Không thể lưu dữ liệu</string>
     <string name="err_db_delete">Lỗi khi xóa dữ liệu</string>
     <string name="err_add_cat_fail">Không thể thêm loại thiết bị</string>
-    <string name="err_empty_cat_name">Vui lòng nhập tên loại</string>
     <string name="err_invalid_cat">Vui lòng chọn loại thiết bị hợp lệ</string>
     <string name="err_invalid_status">Vui lòng chọn trạng thái vận hành</string>
     <string name="err_numeric_year">Năm sản xuất phải là một số</string>
@@ -84,19 +76,23 @@
 
     <!-- Reports & Filtering -->
     <string name="report_title">Báo cáo thống kê</string>
-    <string name="filter_title">Tìm kiếm &amp; Lọc</string>
     <string name="label_filter_cat">Lọc theo loại thiết bị</string>
     <string name="label_special_query">Truy vấn đặc biệt</string>
+    <string name="label_or">HOẶC</string>
     <string name="results_special">Thiết bị sản xuất sau năm 2020 và đang Hoạt động</string>
-    <string name="results_category_format">Loại: %s</string>
     <string name="results_count">Tìm thấy: %d thiết bị</string>
     <string name="results_empty">Không tìm thấy thiết bị nào</string>
-    <string name="label_results">Kết quả:</string>
 
     <!-- Item View placeholders (useful for tools) -->
-    <string name="placeholder_name">Tên thiết bị</string>
-    <string name="placeholder_brand">Thương hiệu</string>
     <string name="placeholder_year">2024</string>
+    <string name="symbol_hash">#</string>
+    <string name="separator_dot"> • </string>
+
+    <!-- Accessibility -->
+    <string name="desc_edit_category">Sửa loại thiết bị</string>
+    <string name="desc_delete_category">Xóa loại thiết bị</string>
+    <string name="desc_edit_equipment">Sửa thiết bị</string>
+    <string name="desc_delete_equipment">Xóa thiết bị</string>
 
     <!-- Array for Status Spinners (Stored in DB) -->
     <string-array name="status_array_db">

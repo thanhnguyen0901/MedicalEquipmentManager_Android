@@ -33,7 +33,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="#"
+                    android:text="@string/symbol_hash"
                     android:textColor="@color/brand_primary"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -74,20 +74,22 @@
 
                 <ImageView
                     android:id="@+id/ivEditCategory"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
+                    android:layout_width="@dimen/category_action_icon_size"
+                    android:layout_height="@dimen/category_action_icon_size"
                     android:background="?attr/selectableItemBackgroundBorderless"
-                    android:padding="8dp"
+                    android:contentDescription="@string/desc_edit_category"
+                    android:padding="@dimen/category_action_icon_padding"
                     android:src="@android:drawable/ic_menu_edit"
                     app:tint="@color/action_edit" />
 
                 <ImageView
                     android:id="@+id/ivDeleteCategory"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
+                    android:layout_width="@dimen/category_action_icon_size"
+                    android:layout_height="@dimen/category_action_icon_size"
                     android:layout_marginStart="@dimen/spacing_tiny"
                     android:background="?attr/selectableItemBackgroundBorderless"
-                    android:padding="8dp"
+                    android:contentDescription="@string/desc_delete_category"
+                    android:padding="@dimen/category_action_icon_padding"
                     android:src="@android:drawable/ic_menu_delete"
                     app:tint="@color/action_delete" />
             </LinearLayout>

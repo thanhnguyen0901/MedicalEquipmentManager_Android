@@ -7,7 +7,6 @@
     android:background="@color/app_bg"
     android:orientation="vertical">
 
-    <!-- Premium Header -->
     <LinearLayout
         android:id="@+id/llHeader"
         style="@style/Widget.App.Header">
@@ -54,7 +53,6 @@
             android:paddingTop="@dimen/spacing_tiny"
             android:paddingBottom="@dimen/list_bottom_padding_with_fab" />
 
-        <!-- Enhanced Add Button -->
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:id="@+id/fabAddEquipment"
             android:layout_width="wrap_content"

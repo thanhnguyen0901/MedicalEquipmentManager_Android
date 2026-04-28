@@ -7,7 +7,6 @@
     android:background="@color/app_bg"
     android:orientation="vertical">
 
-    <!-- Standard Header with Back Button -->
     <LinearLayout
         android:id="@+id/llHeader"
         style="@style/Widget.App.Header">
@@ -44,7 +43,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!-- Main Content -->
         <ListView
             android:id="@+id/lvCategories"
             android:layout_width="match_parent"
@@ -55,7 +53,6 @@
             android:paddingTop="@dimen/spacing_tiny"
             android:paddingBottom="@dimen/list_bottom_padding_with_fab" />
 
-        <!-- Enhanced Add Button -->
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:id="@+id/fabAddCategory"
             android:layout_width="wrap_content"

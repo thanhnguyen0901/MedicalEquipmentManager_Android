@@ -4,7 +4,6 @@
     <!-- Brand Colors - Teal / Medical Mint -->
     <color name="brand_primary">#0F766E</color>
     <color name="brand_primary_light">#14B8A6</color>
-    <color name="brand_secondary">#5EEAD4</color>
 
     <!-- Neutral Colors -->
     <color name="app_bg">#FFFFFF</color>
@@ -22,7 +21,6 @@
 
     <!-- Surface / Card Backgrounds -->
     <color name="card_surface">#FFFFFF</color>
-    <color name="surface_variant">#F8FAFC</color>
     <color name="card_stroke">#E2E8F0</color>
 
     <!-- Input / Field Background -->
@@ -34,11 +32,6 @@
     <color name="icon_bg_blue">#E8F4FF</color>
     <color name="icon_bg_green">#E8F8EC</color>
 
-    <!-- Keep old semantic card names but remap them to Teal-friendly colors -->
-    <color name="card_blue_light">#E8F4FF</color>
-    <color name="card_indigo_light">#F8FFFD</color>
-    <color name="card_green_light">#E8F8EC</color>
-
     <!-- Semantic Status Colors -->
     <color name="status_active">#15803D</color>
     <color name="status_active_bg">#DCFCE7</color>
@@ -49,8 +42,6 @@
     <color name="status_broken">#DC2626</color>
     <color name="status_broken_bg">#FEE2E2</color>
 
-    <color name="error">#DC2626</color>
-    <color name="success">#16A34A</color>
     <color name="info">#0284C7</color>
     <color name="report_green">#22C55E</color>
 
