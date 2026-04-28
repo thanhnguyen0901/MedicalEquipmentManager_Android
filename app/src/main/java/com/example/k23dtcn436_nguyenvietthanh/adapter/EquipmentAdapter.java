@@ -12,12 +12,7 @@ import com.example.k23dtcn436_nguyenvietthanh.R;
 import com.example.k23dtcn436_nguyenvietthanh.model.Equipment;
 
 import java.util.List;
-import java.util.ArrayList;
-import java.util.Collections;
 
-/**
- * Custom Adapter to display Medical Equipment in a ListView.
- */
 public class EquipmentAdapter extends BaseAdapter {
 
     private Context context;
@@ -70,29 +65,19 @@ public class EquipmentAdapter extends BaseAdapter {
             tvBrand.setText(equipment.getBrand());
             tvYear.setText(String.valueOf(equipment.getManufactureYear()));
             
-            // Map status from DB to UI
-            String status = equipment.getStatus();
-            String[] dbStatuses = context.getResources().getStringArray(R.array.status_array_db);
-            String[] uiStatuses = context.getResources().getStringArray(R.array.status_array_ui);
-            for (int i = 0; i < dbStatuses.length; i++) {
-                if (dbStatuses[i].equalsIgnoreCase(status)) {
-                    status = uiStatuses[i];
-                    break;
-                }
-            }
-            tvStatus.setText(status);
+            tvStatus.setText(equipment.getDisplayStatus(context));
 
-            // Advanced status styling logic
+            // Apply colors that match the stored status value.
             int statusColor;
             int statusBg;
             
-            if ("Active".equalsIgnoreCase(equipment.getStatus())) {
+            if (Equipment.STATUS_ACTIVE.equalsIgnoreCase(equipment.getStatus())) {
                 statusColor = ContextCompat.getColor(context, R.color.status_active);
                 statusBg = ContextCompat.getColor(context, R.color.status_active_bg);
-            } else if ("Broken".equalsIgnoreCase(equipment.getStatus())) {
+            } else if (Equipment.STATUS_BROKEN.equalsIgnoreCase(equipment.getStatus())) {
                 statusColor = ContextCompat.getColor(context, R.color.status_broken);
                 statusBg = ContextCompat.getColor(context, R.color.status_broken_bg);
-            } else if ("Maintenance".equalsIgnoreCase(equipment.getStatus())) {
+            } else if (Equipment.STATUS_MAINTENANCE.equalsIgnoreCase(equipment.getStatus())) {
                 statusColor = ContextCompat.getColor(context, R.color.status_maintenance);
                 statusBg = ContextCompat.getColor(context, R.color.status_maintenance_bg);
             } else {

@@ -4,15 +4,12 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import com.example.k23dtcn436_nguyenvietthanh.model.Equipment;
 
-/**
- * Helper class to manage the SQLite database for Medical Equipment.
- */
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     // Database Info
     private static final String DATABASE_NAME = "medical_equipment.db";
-    // Increased version to trigger onUpgrade and seed fresh data
     private static final int DATABASE_VERSION = 2;
 
     // Table Names
@@ -54,54 +51,43 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        // Create tables
         db.execSQL(CREATE_TABLE_CATEGORY);
         db.execSQL(CREATE_TABLE_EQUIPMENT);
-        // Seed initial data
         seedDefaultData(db);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // Drop existing tables and recreate them to ensure a clean state with new seed data
+        // Demo upgrade strategy: recreate the seeded database.
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_EQUIPMENT);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CATEGORY);
         onCreate(db);
     }
 
-    /**
-     * Seeds the database with standard medical equipment sample data in Vietnamese.
-     */
+    // Seed data for the sample medical equipment catalog.
     private void seedDefaultData(SQLiteDatabase db) {
-        // --- Categories ---
         insertCategory(db, "CAT001", "Máy chẩn đoán hình ảnh");
         insertCategory(db, "CAT002", "Thiết bị xét nghiệm");
         insertCategory(db, "CAT003", "Thiết bị theo dõi bệnh nhân");
         insertCategory(db, "CAT004", "Thiết bị phẫu thuật");
         insertCategory(db, "CAT005", "Thiết bị cấp cứu");
 
-        // --- Equipment ---
-        // CAT001: Máy chẩn đoán hình ảnh
-        insertEquipment(db, "EQ001", "Máy siêu âm Doppler", "Samsung Medison", 2022, "Active", "CAT001");
-        insertEquipment(db, "EQ002", "Máy X-quang kỹ thuật số", "Siemens Healthineers", 2021, "Active", "CAT001");
-        insertEquipment(db, "EQ003", "Máy CT Scanner 64 lát cắt", "GE Healthcare", 2019, "Maintenance", "CAT001");
+        insertEquipment(db, "EQ001", "Máy siêu âm Doppler", "Samsung Medison", 2022, Equipment.STATUS_ACTIVE, "CAT001");
+        insertEquipment(db, "EQ002", "Máy X-quang kỹ thuật số", "Siemens Healthineers", 2021, Equipment.STATUS_ACTIVE, "CAT001");
+        insertEquipment(db, "EQ003", "Máy CT Scanner 64 lát cắt", "GE Healthcare", 2019, Equipment.STATUS_MAINTENANCE, "CAT001");
 
-        // CAT002: Thiết bị xét nghiệm
-        insertEquipment(db, "EQ004", "Máy xét nghiệm huyết học", "Sysmex", 2023, "Active", "CAT002");
-        insertEquipment(db, "EQ005", "Máy xét nghiệm sinh hóa", "Roche", 2020, "Active", "CAT002");
+        insertEquipment(db, "EQ004", "Máy xét nghiệm huyết học", "Sysmex", 2023, Equipment.STATUS_ACTIVE, "CAT002");
+        insertEquipment(db, "EQ005", "Máy xét nghiệm sinh hóa", "Roche", 2020, Equipment.STATUS_ACTIVE, "CAT002");
 
-        // CAT003: Thiết bị theo dõi bệnh nhân
-        insertEquipment(db, "EQ006", "Máy đo điện tim ECG", "Nihon Kohden", 2022, "Active", "CAT003");
-        insertEquipment(db, "EQ007", "Máy monitor theo dõi bệnh nhân", "Philips", 2018, "Broken", "CAT003");
+        insertEquipment(db, "EQ006", "Máy đo điện tim ECG", "Nihon Kohden", 2022, Equipment.STATUS_ACTIVE, "CAT003");
+        insertEquipment(db, "EQ007", "Máy monitor theo dõi bệnh nhân", "Philips", 2018, Equipment.STATUS_BROKEN, "CAT003");
 
-        // CAT004: Thiết bị phẫu thuật
-        insertEquipment(db, "EQ008", "Dao mổ điện", "Medtronic", 2021, "Active", "CAT004");
-        insertEquipment(db, "EQ009", "Đèn mổ LED treo trần", "Dräger", 2017, "Maintenance", "CAT004");
+        insertEquipment(db, "EQ008", "Dao mổ điện", "Medtronic", 2021, Equipment.STATUS_ACTIVE, "CAT004");
+        insertEquipment(db, "EQ009", "Đèn mổ LED treo trần", "Dräger", 2017, Equipment.STATUS_MAINTENANCE, "CAT004");
 
-        // CAT005: Thiết bị cấp cứu
-        insertEquipment(db, "EQ010", "Máy sốc tim", "Zoll", 2024, "Active", "CAT005");
-        insertEquipment(db, "EQ011", "Máy thở cấp cứu", "Hamilton Medical", 2021, "Active", "CAT005");
-        insertEquipment(db, "EQ012", "Bơm tiêm điện", "B. Braun", 2019, "Broken", "CAT005");
+        insertEquipment(db, "EQ010", "Máy sốc tim", "Zoll", 2024, Equipment.STATUS_ACTIVE, "CAT005");
+        insertEquipment(db, "EQ011", "Máy thở cấp cứu", "Hamilton Medical", 2021, Equipment.STATUS_ACTIVE, "CAT005");
+        insertEquipment(db, "EQ012", "Bơm tiêm điện", "B. Braun", 2019, Equipment.STATUS_BROKEN, "CAT005");
     }
 
     private void insertCategory(SQLiteDatabase db, String id, String name) {

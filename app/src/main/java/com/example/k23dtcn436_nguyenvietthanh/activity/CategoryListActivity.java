@@ -21,9 +21,6 @@ import com.google.android.material.floatingactionbutton.ExtendedFloatingActionBu
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Activity to display and manage the list of Categories.
- */
 public class CategoryListActivity extends AppCompatActivity {
 
     private ListView lvCategories;
@@ -50,15 +47,12 @@ public class CategoryListActivity extends AppCompatActivity {
     }
 
     private void setupEvents() {
-        // Back button
         btnBack.setOnClickListener(v -> finish());
 
-        // Open dialog to add new category
         fabAdd.setOnClickListener(v -> {
             showAddCategoryDialog();
         });
 
-        // Click to manage item
         lvCategories.setOnItemClickListener((parent, view, position, id) -> {
             showEditDialog(categoryList.get(position));
         });
@@ -151,6 +145,7 @@ public class CategoryListActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        loadData(); // Refresh list whenever returning to this screen
+        // Refresh after returning from add, edit, or delete actions.
+        loadData();
     }
 }

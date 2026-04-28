@@ -15,9 +15,6 @@ import com.example.k23dtcn436_nguyenvietthanh.model.Category;
 import com.example.k23dtcn436_nguyenvietthanh.model.Equipment;
 import com.google.android.material.button.MaterialButton;
 
-/**
- * Activity to display the detailed information of a specific Equipment.
- */
 public class EquipmentDetailActivity extends AppCompatActivity {
 
     private TextView tvId, tvName, tvBrand, tvYear, tvStatus, tvCategory;
@@ -33,7 +30,7 @@ public class EquipmentDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_equipment_detail);
 
         initViews();
-        equipmentId = getIntent().getStringExtra("EQUIPMENT_ID");
+        equipmentId = getIntent().getStringExtra(EquipmentFormActivity.EXTRA_EQUIPMENT_ID);
         
         if (equipmentId == null) {
             Toast.makeText(this, R.string.err_not_found, Toast.LENGTH_SHORT).show();
@@ -68,19 +65,9 @@ public class EquipmentDetailActivity extends AppCompatActivity {
             tvBrand.setText(e.getBrand());
             tvYear.setText(String.valueOf(e.getManufactureYear()));
             
-            // Map status from DB to UI
-            String status = e.getStatus();
-            String[] dbStatuses = getResources().getStringArray(R.array.status_array_db);
-            String[] uiStatuses = getResources().getStringArray(R.array.status_array_ui);
-            for (int i = 0; i < dbStatuses.length; i++) {
-                if (dbStatuses[i].equalsIgnoreCase(status)) {
-                    status = uiStatuses[i];
-                    break;
-                }
-            }
-            tvStatus.setText(status);
+            tvStatus.setText(e.getDisplayStatus(this));
 
-            // Load Category Name instead of just ID
+            // Prefer the category name, but fall back to the stored ID.
             categoryDAO.open();
             Category cat = categoryDAO.getCategoryById(e.getCategoryId());
             if (cat != null) {
@@ -96,7 +83,7 @@ public class EquipmentDetailActivity extends AppCompatActivity {
 
         btnEdit.setOnClickListener(v -> {
             Intent intent = new Intent(EquipmentDetailActivity.this, EquipmentFormActivity.class);
-            intent.putExtra("EQUIPMENT_ID", equipmentId);
+            intent.putExtra(EquipmentFormActivity.EXTRA_EQUIPMENT_ID, equipmentId);
             startActivity(intent);
         });
     }
@@ -104,6 +91,7 @@ public class EquipmentDetailActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        loadData(); // Refresh data in case it was edited
+        // Refresh after returning from the edit screen.
+        loadData();
     }
 }

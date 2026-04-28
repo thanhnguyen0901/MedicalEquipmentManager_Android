@@ -8,10 +8,6 @@ import com.example.k23dtcn436_nguyenvietthanh.database.DatabaseHelper;
 import com.example.k23dtcn436_nguyenvietthanh.model.Category;
 import java.util.ArrayList;
 
-/**
- * Data Access Object (DAO) for Category table.
- * Handles all database operations related to categories.
- */
 public class CategoryDAO {
     private SQLiteDatabase db;
     private DatabaseHelper dbHelper;
@@ -20,23 +16,17 @@ public class CategoryDAO {
         dbHelper = new DatabaseHelper(context);
     }
 
-    // Open the database for writing
     public void open() {
         db = dbHelper.getWritableDatabase();
     }
 
-    // Close the database
     public void close() {
         dbHelper.close();
     }
 
-    /**
-     * Insert a new Category into the database.
-     */
     public long addCategory(Category category) {
         ContentValues values = new ContentValues();
-        // If ID is null, we might want to generate one or let it be null if DB allows it.
-        // But it's TEXT PRIMARY KEY, so it should probably be unique.
+        // Generate an ID when the caller creates a category by name only.
         if (category.getCategoryId() == null) {
             category.setCategoryId(java.util.UUID.randomUUID().toString());
         }
@@ -46,9 +36,6 @@ public class CategoryDAO {
         return db.insert(DatabaseHelper.TABLE_CATEGORY, null, values);
     }
 
-    /**
-     * Update an existing Category in the database.
-     */
     public boolean updateCategory(Category category) {
         ContentValues values = new ContentValues();
         values.put(DatabaseHelper.COLUMN_CATEGORY_NAME, category.getCategoryName());
@@ -59,9 +46,6 @@ public class CategoryDAO {
         return result > 0;
     }
 
-    /**
-     * Delete a Category by its ID.
-     */
     public boolean deleteCategory(String categoryId) {
         int result = db.delete(DatabaseHelper.TABLE_CATEGORY,
                 DatabaseHelper.COLUMN_CATEGORY_ID + " = ?",
@@ -69,9 +53,6 @@ public class CategoryDAO {
         return result > 0;
     }
 
-    /**
-     * Retrieve all categories from the database.
-     */
     public ArrayList<Category> getAllCategories() {
         ArrayList<Category> list = new ArrayList<>();
         Cursor cursor = db.query(DatabaseHelper.TABLE_CATEGORY, null, null, null, null, null, null);
@@ -88,9 +69,6 @@ public class CategoryDAO {
         return list;
     }
 
-    /**
-     * Retrieve a single Category by its ID.
-     */
     public Category getCategoryById(String categoryId) {
         Category category = null;
         Cursor cursor = db.query(DatabaseHelper.TABLE_CATEGORY, null,

@@ -1,9 +1,14 @@
 package com.example.k23dtcn436_nguyenvietthanh.model;
 
-/**
- * Model class representing Medical Equipment.
- */
+import android.content.Context;
+
+import com.example.k23dtcn436_nguyenvietthanh.R;
+
 public class Equipment {
+    public static final String STATUS_ACTIVE = "Active";
+    public static final String STATUS_BROKEN = "Broken";
+    public static final String STATUS_MAINTENANCE = "Maintenance";
+
     private String equipmentId;
     private String equipmentName;
     private String brand;
@@ -11,11 +16,9 @@ public class Equipment {
     private String status;
     private String categoryId;
 
-    // No-arg constructor
     public Equipment() {
     }
 
-    // Constructor without ID
     public Equipment(String equipmentName, String brand, int manufactureYear, String status, String categoryId) {
         this.equipmentName = equipmentName;
         this.brand = brand;
@@ -24,7 +27,6 @@ public class Equipment {
         this.categoryId = categoryId;
     }
 
-    // Full constructor
     public Equipment(String equipmentId, String equipmentName, String brand, int manufactureYear, String status, String categoryId) {
         this.equipmentId = equipmentId;
         this.equipmentName = equipmentName;
@@ -34,7 +36,6 @@ public class Equipment {
         this.categoryId = categoryId;
     }
 
-    // Getters and Setters
     public String getEquipmentId() {
         return equipmentId;
     }
@@ -71,23 +72,33 @@ public class Equipment {
         return status;
     }
 
-    /**
-     * Trả về chuỗi hiển thị tiếng Việt dựa trên trạng thái nội bộ.
-     */
-    public String getDisplayStatus(android.content.Context context) {
-        if (status == null) return "";
-        
-        switch (status.toLowerCase()) {
-            case "active":
-                return context.getString(com.example.k23dtcn436_nguyenvietthanh.R.string.status_active);
-            case "broken":
-                return context.getString(com.example.k23dtcn436_nguyenvietthanh.R.string.status_broken);
-            case "maintenance":
-            case "under maintenance":
-                return context.getString(com.example.k23dtcn436_nguyenvietthanh.R.string.status_maintenance);
-            default:
-                return status;
+    public static String getDisplayStatus(Context context, String dbStatus) {
+        if (dbStatus == null) return "";
+
+        if (STATUS_ACTIVE.equalsIgnoreCase(dbStatus)) {
+            return context.getString(R.string.status_active);
+        } else if (STATUS_BROKEN.equalsIgnoreCase(dbStatus)) {
+            return context.getString(R.string.status_broken);
+        } else if (STATUS_MAINTENANCE.equalsIgnoreCase(dbStatus)) {
+            return context.getString(R.string.status_maintenance);
         }
+        return dbStatus;
+    }
+
+    public static int getStatusSelectionIndex(Context context, String dbStatus) {
+        if (dbStatus == null) return -1;
+
+        String[] dbStatuses = context.getResources().getStringArray(R.array.status_array_db);
+        for (int i = 0; i < dbStatuses.length; i++) {
+            if (dbStatuses[i].equalsIgnoreCase(dbStatus)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public String getDisplayStatus(Context context) {
+        return getDisplayStatus(context, status);
     }
 
     public void setStatus(String status) {

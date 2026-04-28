@@ -20,9 +20,6 @@ import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
 
-/**
- * Activity to generate reports and filter equipment.
- */
 public class ReportActivity extends AppCompatActivity {
 
     private Spinner spnCategory;
@@ -76,7 +73,7 @@ public class ReportActivity extends AppCompatActivity {
     private void setupEvents() {
         btnBack.setOnClickListener(v -> finish());
 
-        // Query 1: Filter by Category
+        // Report requirement: list equipment by category.
         btnFilter.setOnClickListener(v -> {
             if (categoryList.isEmpty()) {
                 Toast.makeText(this, R.string.err_no_category_available, Toast.LENGTH_SHORT).show();
@@ -91,7 +88,7 @@ public class ReportActivity extends AppCompatActivity {
             updateList(results);
         });
 
-        // Query 2: Active & After 2020
+        // Report requirement: active equipment made after 2020.
         btnSpecial.setOnClickListener(v -> {
             equipmentDAO.open();
             ArrayList<Equipment> results = equipmentDAO.getActiveEquipmentAfter2020();
@@ -100,7 +97,7 @@ public class ReportActivity extends AppCompatActivity {
     }
 
     private void updateList(ArrayList<Equipment> list) {
-        // Pass null for the listener to make the adapter Read-Only in Report screen
+        // Null listener keeps report rows read-only.
         adapter = new EquipmentAdapter(this, list, null);
         lvResults.setAdapter(adapter);
         tvCount.setText(String.format(getString(R.string.results_count), list.size()));

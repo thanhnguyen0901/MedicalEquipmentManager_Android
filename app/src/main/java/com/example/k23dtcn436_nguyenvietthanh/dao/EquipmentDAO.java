@@ -8,11 +8,9 @@ import com.example.k23dtcn436_nguyenvietthanh.database.DatabaseHelper;
 import com.example.k23dtcn436_nguyenvietthanh.model.Equipment;
 import java.util.ArrayList;
 
-/**
- * Data Access Object (DAO) for Equipment table.
- * Handles all database operations related to medical equipment.
- */
 public class EquipmentDAO {
+    private static final int REPORT_YEAR_THRESHOLD = 2020;
+
     private SQLiteDatabase db;
     private DatabaseHelper dbHelper;
 
@@ -20,19 +18,14 @@ public class EquipmentDAO {
         dbHelper = new DatabaseHelper(context);
     }
 
-    // Open the database for writing
     public void open() {
         db = dbHelper.getWritableDatabase();
     }
 
-    // Close the database
     public void close() {
         dbHelper.close();
     }
 
-    /**
-     * Insert a new Equipment record.
-     */
     public long addEquipment(Equipment equipment) {
         ContentValues values = new ContentValues();
         if (equipment.getEquipmentId() == null) {
@@ -52,9 +45,6 @@ public class EquipmentDAO {
         return addEquipment(equipment) != -1;
     }
 
-    /**
-     * Update an existing Equipment record.
-     */
     public boolean updateEquipment(Equipment equipment) {
         ContentValues values = new ContentValues();
         values.put(DatabaseHelper.COLUMN_EQUIPMENT_NAME, equipment.getEquipmentName());
@@ -69,9 +59,6 @@ public class EquipmentDAO {
         return result > 0;
     }
 
-    /**
-     * Delete an Equipment record by ID.
-     */
     public boolean deleteEquipment(String equipmentId) {
         int result = db.delete(DatabaseHelper.TABLE_EQUIPMENT,
                 DatabaseHelper.COLUMN_EQUIPMENT_ID + " = ?",
@@ -79,16 +66,10 @@ public class EquipmentDAO {
         return result > 0;
     }
 
-    /**
-     * Retrieve all equipment.
-     */
     public ArrayList<Equipment> getAllEquipment() {
         return getEquipmentFromCursor(db.query(DatabaseHelper.TABLE_EQUIPMENT, null, null, null, null, null, null));
     }
 
-    /**
-     * Retrieve a single Equipment record by ID.
-     */
     public Equipment getEquipmentById(String equipmentId) {
         ArrayList<Equipment> list = getEquipmentFromCursor(db.query(DatabaseHelper.TABLE_EQUIPMENT, null,
                 DatabaseHelper.COLUMN_EQUIPMENT_ID + " = ?",
@@ -96,27 +77,19 @@ public class EquipmentDAO {
         return list.isEmpty() ? null : list.get(0);
     }
 
-    /**
-     * Retrieve equipment by Category ID.
-     */
     public ArrayList<Equipment> getEquipmentByCategory(String categoryId) {
         return getEquipmentFromCursor(db.query(DatabaseHelper.TABLE_EQUIPMENT, null,
                 DatabaseHelper.COLUMN_EQUIPMENT_CATEGORY_ID + " = ?",
                 new String[]{categoryId}, null, null, null));
     }
 
-    /**
-     * Find equipment with manufacture_year > 2020 and status = 'Active'.
-     */
+    // Report requirement: equipment made after 2020 and currently active.
     public ArrayList<Equipment> getActiveEquipmentAfter2020() {
         String selection = DatabaseHelper.COLUMN_MANUFACTURE_YEAR + " > ? AND " + DatabaseHelper.COLUMN_STATUS + " = ?";
-        String[] selectionArgs = {"2020", "Active"};
+        String[] selectionArgs = {String.valueOf(REPORT_YEAR_THRESHOLD), Equipment.STATUS_ACTIVE};
         return getEquipmentFromCursor(db.query(DatabaseHelper.TABLE_EQUIPMENT, null, selection, selectionArgs, null, null, null));
     }
 
-    /**
-     * Helper method to parse Cursor into ArrayList.
-     */
     private ArrayList<Equipment> getEquipmentFromCursor(Cursor cursor) {
         ArrayList<Equipment> list = new ArrayList<>();
         if (cursor != null) {

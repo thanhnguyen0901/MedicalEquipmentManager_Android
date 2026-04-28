@@ -1,10 +1,8 @@
 package com.example.k23dtcn436_nguyenvietthanh.activity;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -20,9 +18,6 @@ import com.google.android.material.floatingactionbutton.ExtendedFloatingActionBu
 
 import java.util.ArrayList;
 
-/**
- * Activity to display and manage the list of Medical Equipment.
- */
 public class EquipmentListActivity extends AppCompatActivity {
 
     private ListView lvEquipment;
@@ -51,21 +46,18 @@ public class EquipmentListActivity extends AppCompatActivity {
     private void setupEvents() {
         btnBack.setOnClickListener(v -> finish());
 
-        // Add new equipment
         fabAdd.setOnClickListener(v -> {
             Intent intent = new Intent(EquipmentListActivity.this, EquipmentFormActivity.class);
             startActivity(intent);
         });
 
-        // Click to view details
         lvEquipment.setOnItemClickListener((parent, view, position, id) -> {
             Equipment selected = equipmentList.get(position);
             Intent intent = new Intent(EquipmentListActivity.this, EquipmentDetailActivity.class);
-            intent.putExtra("EQUIPMENT_ID", selected.getEquipmentId());
+            intent.putExtra(EquipmentFormActivity.EXTRA_EQUIPMENT_ID, selected.getEquipmentId());
             startActivity(intent);
         });
 
-        // Long click for Edit/Delete options
         lvEquipment.setOnItemLongClickListener((parent, view, position, id) -> {
             showActionDialog(equipmentList.get(position));
             return true; // Consume long click
@@ -84,7 +76,7 @@ public class EquipmentListActivity extends AppCompatActivity {
             @Override
             public void onEdit(Equipment equipment) {
                 Intent intent = new Intent(EquipmentListActivity.this, EquipmentFormActivity.class);
-                intent.putExtra("EQUIPMENT_ID", equipment.getEquipmentId());
+                intent.putExtra(EquipmentFormActivity.EXTRA_EQUIPMENT_ID, equipment.getEquipmentId());
                 startActivity(intent);
             }
         });
@@ -98,12 +90,10 @@ public class EquipmentListActivity extends AppCompatActivity {
         builder.setTitle(String.format(getString(R.string.dialog_options_format), equipment.getEquipmentName()));
         builder.setItems(options, (dialog, which) -> {
             if (which == 0) {
-                // Edit
                 Intent intent = new Intent(EquipmentListActivity.this, EquipmentFormActivity.class);
-                intent.putExtra("EQUIPMENT_ID", equipment.getEquipmentId());
+                intent.putExtra(EquipmentFormActivity.EXTRA_EQUIPMENT_ID, equipment.getEquipmentId());
                 startActivity(intent);
             } else if (which == 1) {
-                // Delete
                 showDeleteConfirmDialog(equipment);
             }
         });

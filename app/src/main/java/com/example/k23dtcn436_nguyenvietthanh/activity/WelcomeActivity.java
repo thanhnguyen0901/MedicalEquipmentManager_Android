@@ -18,10 +18,8 @@ public class WelcomeActivity extends AppCompatActivity {
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Use Explicit Intent to navigate to HomeActivity
                 Intent intent = new Intent(WelcomeActivity.this, HomeActivity.class);
                 startActivity(intent);
-                // Finish WelcomeActivity so user cannot go back to it with back button
                 finish();
             }
         });

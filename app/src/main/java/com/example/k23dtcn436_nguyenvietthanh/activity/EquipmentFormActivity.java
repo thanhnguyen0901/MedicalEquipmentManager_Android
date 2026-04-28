@@ -20,10 +20,10 @@ import com.google.android.material.textfield.TextInputEditText;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-/**
- * Form Activity for adding or editing Medical Equipment.
- */
 public class EquipmentFormActivity extends AppCompatActivity {
+    public static final String EXTRA_EQUIPMENT_ID = "EQUIPMENT_ID";
+    private static final int MIN_MANUFACTURE_YEAR = 1900;
+    private static final int MAX_FUTURE_YEAR_OFFSET = 1;
 
     private TextInputEditText etId, etName, etBrand, etYear;
     private Spinner spnStatus, spnCategory;
@@ -42,9 +42,11 @@ public class EquipmentFormActivity extends AppCompatActivity {
         setContentView(R.layout.activity_equipment_form);
 
         initViews();
-        loadSpinners();
-        checkEditMode();
-        setupEvents();
+        loadStatusOptions();
+        loadCategories();
+        loadEditDataIfNeeded();
+        setupBackButton();
+        setupListeners();
     }
 
     private void initViews() {
@@ -62,15 +64,15 @@ public class EquipmentFormActivity extends AppCompatActivity {
         categoryDAO = new CategoryDAO(this);
     }
 
-    private void loadSpinners() {
-        // 1. Status Spinner
+    private void loadStatusOptions() {
         String[] statusOptions = getResources().getStringArray(R.array.status_array_ui);
         ArrayAdapter<String> statusAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, statusOptions);
         statusAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spnStatus.setAdapter(statusAdapter);
+    }
 
-        // 2. Category Spinner
+    private void loadCategories() {
         categoryDAO.open();
         categoryList = categoryDAO.getAllCategories();
         if (categoryList == null) {
@@ -92,58 +94,58 @@ public class EquipmentFormActivity extends AppCompatActivity {
         spnCategory.setAdapter(catAdapter);
     }
 
-    private void checkEditMode() {
-        if (getIntent().hasExtra("EQUIPMENT_ID")) {
-            editEquipmentId = getIntent().getStringExtra("EQUIPMENT_ID");
-            tvTitle.setText(R.string.form_title_edit);
-            etId.setEnabled(false); // ID cannot be changed in Edit mode
-
-            equipmentDAO.open();
-            Equipment e = equipmentDAO.getEquipmentById(editEquipmentId);
-            if (e != null) {
-                etId.setText(e.getEquipmentId());
-                etName.setText(e.getEquipmentName());
-                etBrand.setText(e.getBrand());
-                etYear.setText(String.valueOf(e.getManufactureYear()));
-                
-                // Set Status Spinner (Mapping DB value to UI value)
-                String[] dbStatuses = getResources().getStringArray(R.array.status_array_db);
-                String[] uiStatuses = getResources().getStringArray(R.array.status_array_ui);
-                for (int i = 0; i < dbStatuses.length; i++) {
-                    if (dbStatuses[i].equalsIgnoreCase(e.getStatus())) {
-                        spnStatus.setSelection(i);
-                        break;
-                    }
-                }
-                
-                // Set Category Spinner
-                if (categoryList != null && !categoryList.isEmpty()) {
-                    for (int i = 0; i < categoryList.size(); i++) {
-                        if (categoryList.get(i).getCategoryId().equals(e.getCategoryId())) {
-                            spnCategory.setSelection(i);
-                            break;
-                        }
-                    }
-                }
-            } else {
-                Toast.makeText(this, R.string.err_not_found, Toast.LENGTH_SHORT).show();
-                finish();
-            }
+    private void loadEditDataIfNeeded() {
+        if (!getIntent().hasExtra(EXTRA_EQUIPMENT_ID)) {
+            return;
         }
+
+        editEquipmentId = getIntent().getStringExtra(EXTRA_EQUIPMENT_ID);
+        tvTitle.setText(R.string.form_title_edit);
+        etId.setEnabled(false); // ID cannot be changed in Edit mode
+
+        equipmentDAO.open();
+        Equipment equipment = equipmentDAO.getEquipmentById(editEquipmentId);
+        if (equipment == null) {
+            Toast.makeText(this, R.string.err_not_found, Toast.LENGTH_SHORT).show();
+            finish();
+            return;
+        }
+
+        bindEquipmentForEdit(equipment);
     }
 
-    private void setSpinnerValue(Spinner spinner, String value) {
-        if (value == null) return;
-        for (int i = 0; i < spinner.getCount(); i++) {
-            if (spinner.getItemAtPosition(i).toString().equalsIgnoreCase(value)) {
-                spinner.setSelection(i);
+    private void bindEquipmentForEdit(Equipment equipment) {
+        etId.setText(equipment.getEquipmentId());
+        etName.setText(equipment.getEquipmentName());
+        etBrand.setText(equipment.getBrand());
+        etYear.setText(String.valueOf(equipment.getManufactureYear()));
+
+        int statusIndex = Equipment.getStatusSelectionIndex(this, equipment.getStatus());
+        if (statusIndex >= 0) {
+            spnStatus.setSelection(statusIndex);
+        }
+
+        selectCategory(equipment.getCategoryId());
+    }
+
+    private void selectCategory(String categoryId) {
+        if (categoryList == null || categoryList.isEmpty()) {
+            return;
+        }
+
+        for (int i = 0; i < categoryList.size(); i++) {
+            if (categoryList.get(i).getCategoryId().equals(categoryId)) {
+                spnCategory.setSelection(i);
                 break;
             }
         }
     }
 
-    private void setupEvents() {
+    private void setupBackButton() {
         btnBack.setOnClickListener(v -> finish());
+    }
+
+    private void setupListeners() {
         btnSave.setOnClickListener(v -> saveEquipment());
     }
 
@@ -153,64 +155,112 @@ public class EquipmentFormActivity extends AppCompatActivity {
         String brand = etBrand.getText().toString().trim();
         String yearStr = etYear.getText().toString().trim();
 
-        // 1. Basic Field Validation
-        if (id.isEmpty() || name.isEmpty() || brand.isEmpty() || yearStr.isEmpty()) {
-            Toast.makeText(this, R.string.err_empty_fields, Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        // 2. Category Validation
-        if (categoryList == null || categoryList.isEmpty()) {
-            Toast.makeText(this, R.string.err_no_category, Toast.LENGTH_LONG).show();
+        if (!validateInputs(id, name, brand, yearStr)) {
             return;
         }
 
         int selectedCatPos = spnCategory.getSelectedItemPosition();
-        if (selectedCatPos < 0 || selectedCatPos >= categoryList.size()) {
-            Toast.makeText(this, R.string.err_invalid_cat, Toast.LENGTH_SHORT).show();
+        if (!validateSelectedCategory(selectedCatPos)) {
             return;
         }
 
-        // 3. Status Validation
         int selectedStatusPos = spnStatus.getSelectedItemPosition();
-        if (selectedStatusPos < 0) {
-            Toast.makeText(this, R.string.err_invalid_status, Toast.LENGTH_SHORT).show();
-            return;
-        }
-        String status = getResources().getStringArray(R.array.status_array_db)[selectedStatusPos];
-
-        // 4. Year Validation
-        int year;
-        try {
-            year = Integer.parseInt(yearStr);
-            int currentYear = Calendar.getInstance().get(Calendar.YEAR);
-            if (year < 1900 || year > currentYear + 1) { // Allowing +1 for new arrivals
-                String errMsg = String.format(getString(R.string.err_invalid_year_format), currentYear + 1);
-                Toast.makeText(this, errMsg, Toast.LENGTH_SHORT).show();
-                return;
-            }
-        } catch (NumberFormatException e) {
-            Toast.makeText(this, R.string.err_numeric_year, Toast.LENGTH_SHORT).show();
+        if (!validateSelectedStatus(selectedStatusPos)) {
             return;
         }
 
-        String catId = categoryList.get(selectedCatPos).getCategoryId();
-        Equipment equipment = new Equipment(id, name, brand, year, status, catId);
-        
+        Integer year = parseManufactureYear(yearStr);
+        if (year == null) {
+            return;
+        }
+
+        Equipment equipment = buildEquipmentFromInputs(id, name, brand, year,
+                getSelectedStatusDbValue(selectedStatusPos),
+                getSelectedCategoryId(selectedCatPos));
+
         equipmentDAO.open();
         boolean success;
         if (editEquipmentId == null) {
-            // Add mode: Check for duplicate ID
             if (equipmentDAO.getEquipmentById(id) != null) {
                 Toast.makeText(this, R.string.err_duplicate_id, Toast.LENGTH_LONG).show();
                 return;
             }
-            success = equipmentDAO.insertEquipment(equipment);
+            success = saveNewEquipment(equipment);
         } else {
-            // Edit mode
-            success = equipmentDAO.updateEquipment(equipment);
+            success = updateExistingEquipment(equipment);
         }
 
+        handleSaveResult(success);
+    }
+
+    private boolean validateInputs(String id, String name, String brand, String yearStr) {
+        if (id.isEmpty() || name.isEmpty() || brand.isEmpty() || yearStr.isEmpty()) {
+            Toast.makeText(this, R.string.err_empty_fields, Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validateSelectedCategory(int selectedCatPos) {
+        if (categoryList == null || categoryList.isEmpty()) {
+            Toast.makeText(this, R.string.err_no_category, Toast.LENGTH_LONG).show();
+            return false;
+        }
+        if (selectedCatPos < 0 || selectedCatPos >= categoryList.size()) {
+            Toast.makeText(this, R.string.err_invalid_cat, Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validateSelectedStatus(int selectedStatusPos) {
+        if (selectedStatusPos < 0) {
+            Toast.makeText(this, R.string.err_invalid_status, Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
+
+    private Integer parseManufactureYear(String yearStr) {
+        int year;
+        try {
+            year = Integer.parseInt(yearStr);
+            int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+            // Allow one future year for newly ordered equipment.
+            int maxYear = currentYear + MAX_FUTURE_YEAR_OFFSET;
+            if (year < MIN_MANUFACTURE_YEAR || year > maxYear) {
+                String errMsg = String.format(getString(R.string.err_invalid_year_format), maxYear);
+                Toast.makeText(this, errMsg, Toast.LENGTH_SHORT).show();
+                return null;
+            }
+        } catch (NumberFormatException e) {
+            Toast.makeText(this, R.string.err_numeric_year, Toast.LENGTH_SHORT).show();
+            return null;
+        }
+        return year;
+    }
+
+    private String getSelectedCategoryId(int selectedCatPos) {
+        return categoryList.get(selectedCatPos).getCategoryId();
+    }
+
+    private String getSelectedStatusDbValue(int selectedStatusPos) {
+        return getResources().getStringArray(R.array.status_array_db)[selectedStatusPos];
+    }
+
+    private Equipment buildEquipmentFromInputs(String id, String name, String brand, int year, String status, String categoryId) {
+        return new Equipment(id, name, brand, year, status, categoryId);
+    }
+
+    private boolean saveNewEquipment(Equipment equipment) {
+        return equipmentDAO.insertEquipment(equipment);
+    }
+
+    private boolean updateExistingEquipment(Equipment equipment) {
+        return equipmentDAO.updateEquipment(equipment);
+    }
+
+    private void handleSaveResult(boolean success) {
         if (success) {
             Toast.makeText(this, R.string.msg_save_success, Toast.LENGTH_SHORT).show();
             finish();

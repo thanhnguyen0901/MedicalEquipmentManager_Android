@@ -21,7 +21,6 @@ public class HomeActivity extends AppCompatActivity {
         cardCategories.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Open the modern Category List screen
                 Intent intent = new Intent(HomeActivity.this, CategoryListActivity.class);
                 startActivity(intent);
             }
@@ -30,7 +29,6 @@ public class HomeActivity extends AppCompatActivity {
         cardEquipment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Explicit Intent to EquipmentListActivity
                 Intent intent = new Intent(HomeActivity.this, EquipmentListActivity.class);
                 startActivity(intent);
             }
@@ -39,7 +37,6 @@ public class HomeActivity extends AppCompatActivity {
         cardReports.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Explicit Intent to ReportActivity
                 Intent intent = new Intent(HomeActivity.this, ReportActivity.class);
                 startActivity(intent);
             }
