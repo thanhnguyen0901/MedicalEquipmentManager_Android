@@ -219,4 +219,10 @@ public class EquipmentFormActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (equipmentDAO != null) equipmentDAO.close();
+        if (categoryDAO != null) categoryDAO.close();
+    }
 }

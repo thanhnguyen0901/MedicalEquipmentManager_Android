@@ -57,8 +57,8 @@
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="@dimen/icon_box_size"
                         android:layout_height="@dimen/icon_box_size"
-                        app:cardBackgroundColor="@color/card_indigo_light"
-                        app:cardCornerRadius="@dimen/card_inner_radius"
+                        app:cardBackgroundColor="@color/icon_bg_teal"
+                        app:cardCornerRadius="@dimen/card_corner_radius_soft"
                         app:cardElevation="0dp">
                         <ImageView
                             android:layout_width="match_parent"
@@ -78,7 +78,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/menu_categories"
-                            android:textColor="@color/brand_primary"
+                            android:textColor="@color/text_primary"
                             android:textSize="@dimen/text_size_title"
                             android:textStyle="bold" />
                         <TextView
@@ -116,8 +116,8 @@
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="@dimen/icon_box_size"
                         android:layout_height="@dimen/icon_box_size"
-                        app:cardBackgroundColor="@color/card_blue_light"
-                        app:cardCornerRadius="@dimen/card_inner_radius"
+                        app:cardBackgroundColor="@color/icon_bg_blue"
+                        app:cardCornerRadius="@dimen/card_corner_radius_soft"
                         app:cardElevation="0dp">
                         <ImageView
                             android:layout_width="match_parent"
@@ -137,7 +137,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/menu_equipment"
-                            android:textColor="@color/brand_primary"
+                            android:textColor="@color/text_primary"
                             android:textSize="@dimen/text_size_title"
                             android:textStyle="bold" />
                         <TextView
@@ -175,8 +175,8 @@
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="@dimen/icon_box_size"
                         android:layout_height="@dimen/icon_box_size"
-                        app:cardBackgroundColor="@color/card_green_light"
-                        app:cardCornerRadius="@dimen/card_inner_radius"
+                        app:cardBackgroundColor="@color/icon_bg_green"
+                        app:cardCornerRadius="@dimen/card_corner_radius_soft"
                         app:cardElevation="0dp">
                         <ImageView
                             android:layout_width="match_parent"
@@ -196,7 +196,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/menu_reports"
-                            android:textColor="@color/brand_primary"
+                            android:textColor="@color/text_primary"
                             android:textSize="@dimen/text_size_title"
                             android:textStyle="bold" />
                         <TextView

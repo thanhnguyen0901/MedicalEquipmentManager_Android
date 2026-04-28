@@ -109,4 +109,11 @@ public class ReportActivity extends AppCompatActivity {
             Toast.makeText(this, R.string.err_no_items_found, Toast.LENGTH_SHORT).show();
         }
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (equipmentDAO != null) equipmentDAO.close();
+        if (categoryDAO != null) categoryDAO.close();
+    }
 }

@@ -82,20 +82,26 @@ public class EquipmentAdapter extends BaseAdapter {
             }
             tvStatus.setText(status);
 
-            // Simple status styling logic
+            // Advanced status styling logic
+            int statusColor;
+            int statusBg;
+            
             if ("Active".equalsIgnoreCase(equipment.getStatus())) {
-                tvStatus.setTextColor(ContextCompat.getColor(context, R.color.status_active));
-                tvStatus.setBackgroundColor(ContextCompat.getColor(context, R.color.status_active_bg));
+                statusColor = ContextCompat.getColor(context, R.color.status_active);
+                statusBg = ContextCompat.getColor(context, R.color.status_active_bg);
             } else if ("Broken".equalsIgnoreCase(equipment.getStatus())) {
-                tvStatus.setTextColor(ContextCompat.getColor(context, R.color.status_broken));
-                tvStatus.setBackgroundColor(ContextCompat.getColor(context, R.color.bg_field));
+                statusColor = ContextCompat.getColor(context, R.color.status_broken);
+                statusBg = ContextCompat.getColor(context, R.color.status_broken_bg);
             } else if ("Maintenance".equalsIgnoreCase(equipment.getStatus())) {
-                tvStatus.setTextColor(ContextCompat.getColor(context, R.color.status_maintenance));
-                tvStatus.setBackgroundColor(ContextCompat.getColor(context, R.color.bg_field));
+                statusColor = ContextCompat.getColor(context, R.color.status_maintenance);
+                statusBg = ContextCompat.getColor(context, R.color.status_maintenance_bg);
             } else {
-                tvStatus.setTextColor(ContextCompat.getColor(context, R.color.text_secondary));
-                tvStatus.setBackgroundColor(ContextCompat.getColor(context, R.color.bg_field));
+                statusColor = ContextCompat.getColor(context, R.color.text_secondary);
+                statusBg = ContextCompat.getColor(context, R.color.bg_field);
             }
+            
+            tvStatus.setTextColor(statusColor);
+            tvStatus.getBackground().setTint(statusBg);
 
             if (ivEdit != null) {
                 if (listener != null) {

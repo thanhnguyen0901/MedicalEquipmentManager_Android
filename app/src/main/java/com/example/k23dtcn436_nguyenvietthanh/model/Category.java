@@ -22,23 +22,6 @@ public class Category {
         this.categoryName = categoryName;
     }
 
-    // Alias methods for compatibility
-    public String getId() {
-        return categoryId;
-    }
-
-    public void setId(String id) {
-        this.categoryId = id;
-    }
-
-    public String getName() {
-        return categoryName;
-    }
-
-    public void setName(String name) {
-        this.categoryName = name;
-    }
-
     // Getters and Setters
     public String getCategoryId() {
         return categoryId;

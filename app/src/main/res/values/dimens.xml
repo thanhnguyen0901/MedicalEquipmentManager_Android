@@ -9,14 +9,20 @@
 
     <!-- Screen Margins and Padding -->
     <dimen name="screen_padding">20dp</dimen>
+    <dimen name="list_horizontal_padding">16dp</dimen>
+    <dimen name="list_item_vertical_spacing">6dp</dimen>
+    <dimen name="list_bottom_padding_with_fab">96dp</dimen>
     <dimen name="header_padding_horizontal">24dp</dimen>
     <dimen name="header_padding_top">24dp</dimen>
     <dimen name="header_padding_bottom">32dp</dimen>
     <dimen name="card_padding">24dp</dimen>
 
     <!-- Component Dimensions -->
+    <dimen name="card_corner_radius_soft">16dp</dimen>
+    <dimen name="item_spacing_list">10dp</dimen>
+    <dimen name="item_inner_padding">14dp</dimen>
+    <dimen name="category_icon_size">40dp</dimen>
     <dimen name="card_corner_radius">20dp</dimen>
-    <dimen name="card_inner_radius">16dp</dimen>
     <dimen name="input_corner_radius">12dp</dimen>
     <dimen name="button_corner_radius">16dp</dimen>
     <dimen name="icon_box_size">56dp</dimen>

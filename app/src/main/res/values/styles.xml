@@ -40,13 +40,15 @@
     <style name="Widget.App.Card" parent="Widget.MaterialComponents.CardView">
         <item name="cardCornerRadius">@dimen/card_corner_radius</item>
         <item name="cardElevation">@dimen/elevation_low</item>
+        <item name="cardBackgroundColor">@color/card_surface</item>
+        <item name="strokeColor">@color/card_stroke</item>
+        <item name="strokeWidth">1dp</item>
         <item name="android:layout_marginBottom">@dimen/spacing_medium</item>
         <item name="android:layout_marginHorizontal">@dimen/spacing_medium</item>
-        <item name="strokeWidth">0dp</item>
     </style>
 
     <style name="Widget.App.Card.Inner">
-        <item name="cardCornerRadius">@dimen/card_inner_radius</item>
+        <item name="cardCornerRadius">@dimen/card_corner_radius_soft</item>
         <item name="android:layout_marginBottom">@dimen/spacing_small</item>
         <item name="android:layout_marginHorizontal">@dimen/spacing_small</item>
     </style>
@@ -79,5 +81,13 @@
         <item name="android:textSize">@dimen/text_size_tiny</item>
         <item name="android:textStyle">bold</item>
         <item name="android:gravity">center</item>
+    </style>
+
+    <style name="Widget.App.ResultCount">
+        <item name="android:textColor">@color/brand_primary_light</item>
+        <item name="android:textSize">@dimen/text_size_small</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.02</item>
+        <item name="android:paddingVertical">@dimen/spacing_small</item>
     </style>
 </resources>

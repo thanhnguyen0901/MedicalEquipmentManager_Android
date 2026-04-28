@@ -4,13 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:background="@color/white">
-
-    <!-- Decorative Top Element -->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:background="@color/bg_decorative" />
+    android:background="@color/app_bg">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,9 +19,11 @@
             android:layout_width="140dp"
             android:layout_height="140dp"
             android:layout_marginBottom="40dp"
+            app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="70dp"
-            app:cardElevation="8dp"
-            app:strokeWidth="0dp">
+            app:cardElevation="@dimen/elevation_medium"
+            app:strokeColor="@color/card_stroke"
+            app:strokeWidth="1dp">
 
             <ImageView
                 android:id="@+id/ivWelcomeLogo"
@@ -45,7 +41,7 @@
             android:gravity="center"
             android:lineSpacingExtra="4sp"
             android:text="@string/welcome_title"
-            android:textColor="@color/brand_primary"
+            android:textColor="@color/text_primary"
             android:textSize="@dimen/text_size_h1"
             android:textStyle="bold" />
 

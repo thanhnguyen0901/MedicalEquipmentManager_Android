@@ -21,8 +21,8 @@ public class HomeActivity extends AppCompatActivity {
         cardCategories.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Explicit Intent to CategoryActivity (Consolidated Management Screen)
-                Intent intent = new Intent(HomeActivity.this, CategoryActivity.class);
+                // Open the modern Category List screen
+                Intent intent = new Intent(HomeActivity.this, CategoryListActivity.class);
                 startActivity(intent);
             }
         });

@@ -7,7 +7,7 @@
 
     <!-- Home Menu -->
     <string name="home_title">Trang chủ</string>
-    <string name="home_subtitle">Xin chào, Quản trị viên</string>
+    <string name="home_subtitle">Xin chào, K23DTCN436 - Nguyễn Việt Thanh</string>
     <string name="menu_categories">Loại thiết bị</string>
     <string name="desc_categories">Nhóm Tổ chức</string>
     <string name="menu_equipment">Thiết bị</string>
@@ -61,6 +61,7 @@
     <string name="dialog_manage_format">Quản lý: %s</string>
     <string name="msg_delete_success">Đã xóa thành công</string>
     <string name="msg_save_success">Đã lưu thông tin</string>
+    <string name="msg_update_success">Đã cập nhật thành công</string>
     <string name="msg_add_cat_success">Đã thêm loại thiết bị</string>
     <string name="msg_confirm_delete_format">Bạn có chắc muốn xóa \'%s\'?</string>
 

@@ -51,9 +51,8 @@
             android:clipToPadding="false"
             android:divider="@android:color/transparent"
             android:dividerHeight="0dp"
-            android:paddingHorizontal="@dimen/spacing_small"
-            android:paddingTop="@dimen/spacing_small"
-            android:paddingBottom="88dp" />
+            android:paddingTop="@dimen/spacing_tiny"
+            android:paddingBottom="@dimen/list_bottom_padding_with_fab" />
 
         <!-- Enhanced Add Button -->
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
@@ -66,6 +65,7 @@
             android:textColor="@color/white"
             app:backgroundTint="@color/brand_primary"
             app:icon="@android:drawable/ic_input_add"
-            app:iconTint="@color/white" />
+            app:iconTint="@color/white"
+            app:elevation="@dimen/elevation_high" />
     </FrameLayout>
 </LinearLayout>

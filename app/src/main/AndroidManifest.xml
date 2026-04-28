@@ -31,10 +31,6 @@
             android:name=".activity.CategoryListActivity"
             android:parentActivityName=".activity.HomeActivity"
             android:exported="false" />
-        <activity
-            android:name=".activity.CategoryActivity"
-            android:parentActivityName=".activity.CategoryListActivity"
-            android:exported="false" />
 
         <!-- 4. Equipment Management -->
         <activity

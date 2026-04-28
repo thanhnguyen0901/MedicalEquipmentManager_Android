@@ -132,4 +132,12 @@ public class EquipmentListActivity extends AppCompatActivity {
         super.onResume();
         loadData();
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (equipmentDAO != null) {
+            equipmentDAO.close();
+        }
+    }
 }

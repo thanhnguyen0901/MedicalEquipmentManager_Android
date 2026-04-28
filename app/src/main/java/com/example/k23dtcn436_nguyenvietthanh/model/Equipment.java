@@ -34,23 +34,6 @@ public class Equipment {
         this.categoryId = categoryId;
     }
 
-    // Alias methods for compatibility
-    public String getId() {
-        return equipmentId;
-    }
-
-    public void setId(String id) {
-        this.equipmentId = id;
-    }
-
-    public String getName() {
-        return equipmentName;
-    }
-
-    public void setName(String name) {
-        this.equipmentName = name;
-    }
-
     // Getters and Setters
     public String getEquipmentId() {
         return equipmentId;

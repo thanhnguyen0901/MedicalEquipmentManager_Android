@@ -1,37 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Brand Colors -->
-    <color name="brand_primary">#1A237E</color>
-    <color name="brand_primary_light">#3F51B5</color>
-    <color name="brand_secondary">#5C6BC0</color>
+
+    <!-- Brand Colors - Teal / Medical Mint -->
+    <color name="brand_primary">#0F766E</color>
+    <color name="brand_primary_light">#14B8A6</color>
+    <color name="brand_secondary">#5EEAD4</color>
 
     <!-- Neutral Colors -->
-    <color name="app_bg">#F8F9FD</color>
+    <color name="app_bg">#FFFFFF</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
-    <color name="text_primary">#1A237E</color>
-    <color name="text_secondary">#757575</color>
-    <color name="text_hint">#BDBDBD</color>
-    <color name="text_light">#C5CAE9</color>
-    <color name="text_muted">#9E9E9E</color>
-    <color name="text_dark">#212121</color>
-    <color name="divider">#EEEEEE</color>
 
-    <!-- Semantic Colors -->
-    <color name="status_active">#2E7D32</color>
-    <color name="status_active_bg">#E8F5E9</color>
-    <color name="status_maintenance">#F9A825</color>
-    <color name="status_broken">#C62828</color>
-    <color name="error">#F44336</color>
-    <color name="success">#4CAF50</color>
-    <color name="info">#0288D1</color>
-    <color name="report_green">#689F38</color>
+    <color name="text_primary">#134E4A</color>
+    <color name="text_secondary">#64748B</color>
+    <color name="text_hint">#A7B4C3</color>
+    <color name="text_light">#CCFBF1</color>
+    <color name="text_muted">#94A3B8</color>
+    <color name="text_dark">#0F172A</color>
 
-    <!-- Background and UI elements -->
-    <color name="bg_field">#F5F5F5</color>
-    <color name="bg_decorative">#F0F4FF</color>
-    <color name="card_blue_light">#E1F5FE</color>
-    <color name="card_indigo_light">#E8EAF6</color>
-    <color name="card_green_light">#F1F8E9</color>
-    <color name="ripple_light">#10000000</color>
+    <color name="divider">#D9F3EE</color>
+
+    <!-- Surface / Card Backgrounds -->
+    <color name="card_surface">#FFFFFF</color>
+    <color name="surface_variant">#F8FAFC</color>
+    <color name="card_stroke">#E2E8F0</color>
+
+    <!-- Input / Field Background -->
+    <color name="bg_field">#F8FAFC</color>
+    <color name="bg_decorative">#CCFBF1</color>
+
+    <!-- Home / Icon Container Backgrounds -->
+    <color name="icon_bg_teal">#DDF7F1</color>
+    <color name="icon_bg_blue">#E8F4FF</color>
+    <color name="icon_bg_green">#E8F8EC</color>
+
+    <!-- Keep old semantic card names but remap them to Teal-friendly colors -->
+    <color name="card_blue_light">#E8F4FF</color>
+    <color name="card_indigo_light">#F8FFFD</color>
+    <color name="card_green_light">#E8F8EC</color>
+
+    <!-- Semantic Status Colors -->
+    <color name="status_active">#15803D</color>
+    <color name="status_active_bg">#DCFCE7</color>
+
+    <color name="status_maintenance">#D97706</color>
+    <color name="status_maintenance_bg">#FEF3C7</color>
+
+    <color name="status_broken">#DC2626</color>
+    <color name="status_broken_bg">#FEE2E2</color>
+
+    <color name="error">#DC2626</color>
+    <color name="success">#16A34A</color>
+    <color name="info">#0284C7</color>
+    <color name="report_green">#22C55E</color>
+
+    <!-- Action Colors -->
+    <color name="action_edit">#0EA5E9</color>
+    <color name="action_delete">#F87171</color>
+
+    <!-- Ripple -->
+    <color name="ripple_light">#14000000</color>
+
 </resources>
